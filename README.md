@@ -28,7 +28,11 @@ terraform destory --auto-approve
 ## Kubeconfig
 **Connect to the eks cluster**
 ```bash
-aws eks --region ap-south-1 update-kubeconfig --name -devopsshack-cluster
+aws eks --region ap-south-1 update-kubeconfig --name=devopsshack-cluster
+```
+**Check the running nodes**
+```bash
+kubectl get nodes
 ```
 
 ## Install Kubectl
