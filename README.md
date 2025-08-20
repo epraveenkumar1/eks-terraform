@@ -43,8 +43,15 @@ sudo mv kubectl /usr/local/bin/
 # 4. Verify the installation
 kubectl version --client
 ```
+
 ```bash
 # Befor this command, connect to the cluster created
 kubectl get nodes
 ```
 
+## Add the security info/credentials
+**Kube config is the file that has the complete information about the cluster and it is also used for authentication with cluster**
+```bash
+cat ~/.kube/config
+```
+**Copy the entire file and create a secret in the GitHub Actions**
