@@ -11,13 +11,28 @@ aws --version
 ```
 
 ## Install Terraform
+**Clone the git repository**
 ```bash
 wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(grep -oP '(?<=UBUNTU_CODENAME=).*' /etc/os-release || lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
 sudo apt update && sudo apt install terraform
 ```
+**Initialise terraform and automate**
+```bash
+terrafrom init
+terraform plan
+terraform apply --auto-approve
+terraform destory --auto-approve
+```
+
+## Kubeconfig
+**Connect to the eks cluster**
+```bash
+aws eks --region ap-south-1 update-kubeconfig --name -devopsshack-cluster
+```
 
 ## Install Kubectl
+**Kubectl is used to communicate withe the cluster**
 ```bash
 # 1. Download the latest release
 curl -LO "https://dl.k8s.io/release/$(curl -Ls https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
@@ -28,9 +43,8 @@ sudo mv kubectl /usr/local/bin/
 # 4. Verify the installation
 kubectl version --client
 ```
-
-
-## Kubeconfig
 ```bash
-aws eks --region ap-south-1 update-kubeconfig --name -devopsshack-cluster
+# Befor this command, connect to the cluster created
+kubectl get nodes
 ```
+
